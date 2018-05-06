@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1525629948 source:/Volumes/Almacen/UTN/Programacion I/TPs/Tp_2_Lab_2/bibliotecaInput.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funciones.h"
+	"bibliotecaInput.h"
+
+1525629966 /Volumes/Almacen/UTN/Programacion I/TPs/Tp_2_Lab_2/funciones.h
+	<stdio.h>
+
+1525629961 /Volumes/Almacen/UTN/Programacion I/TPs/Tp_2_Lab_2/bibliotecaInput.h
+
+1525629918 source:/Volumes/Almacen/UTN/Programacion I/TPs/Tp_2_Lab_2/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funciones.h"
+	"bibliotecaInput.h"
+
