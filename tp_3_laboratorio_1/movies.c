@@ -15,14 +15,43 @@
 #include "functions.h"
 #include "inputFunctions.h"
 
+/*void enterTitle(char title[]){
+    fpurge(stdin);
+    printf("\nIngrese el titulo: ");
+    scanf("%50[^\n]", title);
+}
+
+int list_setTitleMovie(EMovie* movie, char movieTitle[]){
+    
+    int i;
+    unsigned long titleLenght = strlen(movieTitle);
+    
+    if (titleLenght>1 && titleLenght<21) {
+        for (i = 0; i < titleLenght; i++) {
+            
+            movieTitle[i] = tolower(movieTitle[i]);
+        }
+        movieTitle[0] = toupper(movieTitle[0]);
+        strcpy(movie->titulo, movieTitle);
+        return 0;
+    }
+    return 1;
+}*/
+
 
 void list_enterMovie(EMovie* movie){
     
+    /*char titleAux[20];
+    enterTitle(titleAux);
+    if (list_setTitleMovie(movie, titleAux)) {
+        printf("\nEl titulo debe tener como maximo 19 caracteres");
+    }*/
+    
     getValidStringTitle("Ingrese el titulo: ", movie->titulo);
-    getValidStringGenero("Ingrese el genero: ", "El genero debe estar compuesto por letras", movie->genero);
-    movie->duracion = getValidInt("Ingrese la duracion en minutos: ", "La duracion debe estar compuesta por numeros enteros", 1, 300);
-    getValidStringDescription("Ingrese una descripcion: ", "La descripcion debe estar compuesta solo por letras", movie->descripcion);
-    movie->puntaje = getValidInt("Ingrese un puntaje: ", "El puntaje debe ser numerico", 1, 10);
+    getValidStringGenero("Ingrese el genero: ", "\nEl genero debe estar compuesto por letras", movie->genero);
+    movie->duracion = getValidInt("Ingrese la duracion en minutos: ", "\nLa duracion debe estar compuesta por numeros enteros", 1, 300);
+    getValidStringDescription("Ingrese una descripcion: ", "\nLa descripcion debe estar compuesta solo por letras", movie->descripcion);
+    movie->puntaje = getValidInt("Ingrese un puntaje: ", "\nEl puntaje debe ser numerico", 1, 10);
     getValidStringLink("Ingrese el link de imagen: ", movie->linkImagen);
 }
 
@@ -71,7 +100,6 @@ void list_addMovie(EMoviesList* moviesList, EMovie* movie){
 EMovie* list_newMovie(void){
     
     EMovie* movie = (EMovie*)malloc(sizeof(EMovie));
-    
     return movie;
 }
 

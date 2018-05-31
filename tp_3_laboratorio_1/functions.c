@@ -27,93 +27,112 @@ int guardarPelicula(EMovie* movie){
         return 0;
     }
     
+    fpurge(stdin);
     fwrite(movie, sizeof(EMovie), 1, ptrFile);
-    printf("\nSe guardo\n");
+    printf("\nSe guardo la pelicula en el archivo\n");
     fclose(ptrFile);
     return 1;
 }
 
 
-int agregarPelicula(void){
+int agregarPelicula(EMoviesList* moviesList, EMovie* movie){
     
-    int seguir = 1;
-    /*int seguirCargando;
-    int auxNuevaLongitud;
-    int longitudPeliculas=1;
-    EMovie* moviesAux;
-    FILE* ptrFile;*/
+    char confirmar = 's';
     
     clearScreen();
-    printf("\n------------------------\
-            \n| * ALTA DE PELICULA * |\
-            \n------------------------\n");
+    printf("\n--------------------------------------------\
+            \n|      *      ALTA DE PELICULA      *      |\
+            \n--------------------------------------------\n\n");
     
-    EMoviesList* moviesList = list_initMoviesList();
-    
-    EMovie* movie = list_newMovie();
-    
-    while (seguir==1) {
+    while (confirmar=='s') {
         
         list_enterMovie(movie);
         
         list_addMovie(moviesList, movie);
         
         if (!guardarPelicula(movie)) {
-            printf("\nNo se pudo agregar la pelicula\n");
+            printf("\nNo se pudo guardar la pelicula\n");
             return 0;
         }
         
         movie = list_newMovie();
         
-        seguir = getValidInt("Si desea cargar otra pelicula ingrese 1, para salir 0: ", "Se debe ingresar '1' para seguir, o '0' para salir", 0, 1);
+        confirmar = confirm("Desea cargar otra pelicula? [s|n]: ");
     }
     free(movie);
+    int i;
+    
+    for (i=0; i<list_getSize(moviesList); i++) {
+        list_printMovie(list_get(moviesList, i));
+    }
+    
     return 1;
+}
+
+int mostrarListaDePeliculas(EMoviesList* moviesList, EMovie* movie){
     
-    /*movie = (EMovie*)malloc(sizeof(EMovie));
-    if (movie==NULL) {
-        
-        printf("\nNo hay lugar en memoria");
-        return 0;
-    }
+    int i=0;
+    //unsigned long cant;
+    FILE* ptrFile;
+    EMovie* movieAux = (EMovie*)malloc(sizeof(EMovie));
     
-    while (1) {
-        
-        getValidStringTitle("Ingrese el titulo: ", (movie+longitudPeliculas-1)->titulo);
-        getValidStringGenero("Ingrese el genero: ", "El genero debe estar compuesto por letras", (movie+longitudPeliculas-1)->genero);
-        (movie+longitudPeliculas-1)->duracion = getValidInt("Ingrese la duracion en minutos: ", "La duracion debe estar compuesta por numeros enteros", 1, 300);
-        getValidStringDescription("Ingrese una descripcion: ", "La descripcion debe estar compuesta solo por letras", (movie+longitudPeliculas-1)->descripcion);
-        (movie+longitudPeliculas-1)->puntaje = getValidInt("Ingrese un puntaje: ", "El puntaje debe ser numerico", 1, 10);
-        getValidStringLink("Ingrese el link de imagen: ", (movie+longitudPeliculas-1)->linkImagen);
-        
-        seguirCargando = getValidInt("Si desea cargar otra pelicula ingrese 1, para salir 0: ", "Se debe ingresar '1' para seguir, o '0' para salir", 0, 1);
-        if (seguirCargando==1) {
-            
-            longitudPeliculas++;
-            
-            auxNuevaLongitud = sizeof(EMovie)*longitudPeliculas;
-            
-            moviesAux = (EMovie*)realloc(movie, auxNuevaLongitud);
-            if (moviesAux==NULL) {
-                printf("\nNo hay lugar en memoria");
-                return 0;
-            }
-            movie = moviesAux;
-        }
-        else {
-            break;
-        }
-    }
-  
-    ptrFile = fopen("bin.dat", "ab+");
+    ptrFile = fopen("bin.dat", "rb");
+    
     if (ptrFile==NULL) {
         
-        printf("Error abriendo el archivo");
+        printf("\nError abriendo el archivo\n");
         return 0;
     }
     
-    fwrite(movie, sizeof(EMovie), 1, ptrFile);
-    
+    fpurge(stdin);
+    rewind (ptrFile);
+    while (fread(movieAux, sizeof(movie), 1, ptrFile)!=0) {
+        printf("\nTitulo: %s \nGenero: %s \nDuracion: %d \nDescripcion: %s \nPuntaje: %d \
+               \nLink imagen: %s",movieAux->titulo,movieAux->genero,movieAux->duracion,\
+               movieAux->descripcion,movieAux->puntaje,movieAux->linkImagen);
+        
+        /*moviesList->movies[i]=movieAux;
+        list_printMovie(list_get(moviesList, i));
+        i++;*/
+    }
     fclose(ptrFile);
+    getchar();
+    return 1;
+    /*while(!feof(ptrFile)){
+        
+        fpurge(stdin);
+        rewind (ptrFile);
+        cant = fread(moviesList->movies,sizeof(movie),1,ptrFile);
+        
+        if(cant!=1){
+            if(feof(ptrFile)){
+                return 0;
+            }
+            else{
+                printf("No leyo el ultimo registro");
+                return 0;
+            }
+        }
+        list_printMovie(list_get(moviesList, i));
+    }
+    fclose(ptrFile);
+    getchar();
     return 1;*/
+}
+
+
+char confirm(char confirmMensaje[]){
+    
+    char confirmar = 'n';
+    
+    do {
+        
+        printf("%s", confirmMensaje);
+        fpurge(stdin);
+        scanf("%c", &confirmar);
+        confirmar = tolower(confirmar);
+        
+    } while (confirmar != 's' && confirmar != 'n');
+    
+    return confirmar;
 }

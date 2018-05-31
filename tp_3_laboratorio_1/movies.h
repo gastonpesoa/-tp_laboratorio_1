@@ -12,12 +12,12 @@
 #include <stdio.h>
 
 typedef struct{
-    char titulo[20];
+    char titulo[50];
     char genero[20];
     int duracion;
-    char descripcion[50];
+    char descripcion[500];
     int puntaje;
-    char linkImagen[50];
+    char linkImagen[200];
 }EMovie;
 
 typedef struct{

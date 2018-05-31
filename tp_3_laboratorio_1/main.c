@@ -19,8 +19,15 @@
 
 int main()
 {
+    EMovie* movie;
+    EMoviesList* moviesList;
+    
     char seguir='s';
     int opcion=0;
+    
+    moviesList = list_initMoviesList();
+
+    movie = list_newMovie();
     
     while(seguir=='s')
     {
@@ -34,11 +41,24 @@ int main()
         switch(opcion)
         {
             case 1:
-                agregarPelicula();
+                
+                if (!agregarPelicula(moviesList,movie)) {
+                    printf("\nNo se pudo agregar la pelicula\n");
+                }
+                else{
+                    printf("\nPelicula cargada con exito\n");
+                }
                 break;
             case 2:
                 break;
             case 3:
+                mostrarListaDePeliculas(moviesList, movie);
+                /*if (!mostrarListaDePeliculas(moviesList, movie)) {
+                    printf("\nNo se pudo agregar la pelicula\n");
+                }
+                else{
+                    getchar();
+                }*/
                 break;
             case 4:
                 seguir = 'n';

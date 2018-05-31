@@ -18,7 +18,9 @@
  *  @param movie la estructura a ser agregada al archivo
  *  @return retorna 1 o 0 de acuerdo a si pudo agregar la pelicula o no
  */
-int agregarPelicula(void);
+int agregarPelicula(EMoviesList* moviesList, EMovie* movie);
+
+int mostrarListaDePeliculas(EMoviesList* moviesList, EMovie* movie);
 
 /**
  *  Borra una pelicula del archivo binario
@@ -34,5 +36,11 @@ int borrarPelicula(EMovie movie);
  */
 void generarPagina(EMovie lista[], char nombre[]);
 
+/** Funcion que solicita un caracter 's' o 'n', valida que sea ingresado correctamente 
+ *  y devuelve el resultado
+ *  @param char confirmMensaje[] el mensaje a ser mostrado
+ *  @return caracter 's' o 'n'
+ */
+char confirm(char confirmMensaje[]);
 
 #endif /* defined(__tp_3_laboratorio_1__functions__) */

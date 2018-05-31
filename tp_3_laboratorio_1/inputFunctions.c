@@ -111,6 +111,7 @@ int esSoloLetras(char str[]){
 
 void getString(char mensaje[],char input[]){
     
+    fpurge(stdin);
     printf("%s",mensaje);
     scanf ("%s", input);
 }
@@ -120,7 +121,7 @@ void getStringSpace(char mensaje[], char input[]){
     
     fpurge(stdin);
     printf("%s", mensaje);
-    scanf("%50[^\n]", input);
+    scanf("%[^\n]", input);
 }
 
 int getStringNumeros(char mensaje[],char input[]){
@@ -137,7 +138,7 @@ int getStringNumeros(char mensaje[],char input[]){
 
 int getStringLetras(char mensaje[],char input[]){
     
-    char aux[20];
+    char aux[600];
     int i;
     unsigned long auxiliarLenght;
     
@@ -156,9 +157,10 @@ int getStringLetras(char mensaje[],char input[]){
     return 0;
 }
 
+
 void getValidStringTitle(char mensaje[], char input[]){
     
-    char auxiliar[20];
+    char auxiliar[50];
     int i;
     unsigned long auxiliarLenght;
     
@@ -167,9 +169,9 @@ void getValidStringTitle(char mensaje[], char input[]){
         getStringSpace(mensaje, auxiliar);
         
         auxiliarLenght = strlen(auxiliar);
-        if (auxiliarLenght>20) {
+        if (auxiliarLenght>50) {
             
-            printf("El titulo debe tener como maximo 19 caracteres");
+            printf("El titulo debe tener como maximo 49 caracteres");
             continue;
         }
         break;
@@ -212,9 +214,9 @@ void getValidStringDescription(char requestMessage[],char errorMessage[], char i
         }
         
         stringLen = strlen(input);
-        if(stringLen > 50){
+        if(stringLen > 500){
             
-            printf ("\nLa descripcion debe tener como maximo 49 caracteres\n");
+            printf ("\nLa descripcion debe tener como maximo 499 caracteres\n");
             continue;
         }
         break;
@@ -243,7 +245,7 @@ void getValidStringGenero(char requestMessage[],char errorMessage[], char input[
 
 void getValidStringLink(char mensaje[], char input[]){
     
-    char auxiliar[50];
+    char auxiliar[200];
     int i;
     unsigned long auxiliarLenght;
     
@@ -252,9 +254,9 @@ void getValidStringLink(char mensaje[], char input[]){
         getStringSpace(mensaje, auxiliar);
         
         auxiliarLenght = strlen(auxiliar);
-        if (auxiliarLenght>50) {
+        if (auxiliarLenght>200) {
             
-            printf("El link debe tener como maximo 49 caracteres");
+            printf("El link debe tener como maximo 199 caracteres");
             continue;
         }
         break;
