@@ -38,17 +38,15 @@ int optionMainMenu(void){
     int option = 0;
     
     char menuPrinsipalMensaje[] =
-    "\n\n1 - ALTA DE PRODUCTO\
-    \n2 - MODIFICAR PRODUCTO\
-    \n3 - BAJA DE PRODUCTO\
-    \n4 - INFORMES\
-    \n5 - LISTAS\
-    \n6 - SALIR\
-    \n\nIngrese una opcion: ";
+    "\n\n1- Agregar pelicula\
+       \n2- Borrar pelicula\
+       \n3- Generar pagina web\
+       \n4- Salir\
+     \n\nIngrese una opcion: ";
     
-    char menuPrinsipalMensajeError[] = "\nSe debe elegir una opcion del 1 al 6";
+    char menuPrinsipalMensajeError[] = "\nSe debe elegir una opcion del 1 al 4";
     
-    option = getValidInt(menuPrinsipalMensaje, menuPrinsipalMensajeError, 1, 6);
+    option = getValidInt(menuPrinsipalMensaje, menuPrinsipalMensajeError, 1, 4);
     return option;
 }
 
@@ -58,11 +56,13 @@ int optionModifyMenu(void){
     int option = 0;
     
     char menuModificarProductMensaje[] =
-    "\n\n1 - MODIFICAR DESCRIPCION\
-    \n2 - MODIFICAR PRECIO\
-    \n3 - MODIFICAR STOCK\
-    \n4 - REGRESAR\
-    \n\nIngrese una opcion: ";
+    "\n\n1- Modificar titulo\
+       \n2- Modificar genero\
+       \n3- Modificar duracion\
+       \n4- Modificar descripcion\
+       \n5- Modificar puntaje\
+       \n6- Modificar link de imagen\
+     \n\nIngrese una opcion: ";
     
     char menuModificarProductMensajeError[] = "\nSe debe elegir una opcion del 1 al 4";
     
