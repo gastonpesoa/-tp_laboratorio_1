@@ -22,7 +22,6 @@ int main()
     EMoviesList* moviesList = moviesList = list_initMoviesList(); // Creamos una estructura a EMovieList de forma dinamica
     EMovie* movie = movie = list_newMovie(); // Creamos una estructura a EMovie de forma dinamica
     
-    char seguir='s';
     int opcion=0;
     
     while(opcion!=4)
