@@ -44,9 +44,9 @@ int optionMainMenu(void){
        \n4- Salir\
      \n\nIngrese una opcion: ";
     
-    char menuPrinsipalMensajeError[] = "\nSe debe elegir una opcion del 1 al 4";
+    char menuPrinsipalMensajeError[] = "\nSe debe elegir una opcion del 1 al 6";
     
-    option = getValidInt(menuPrinsipalMensaje, menuPrinsipalMensajeError, 1, 4);
+    option = getValidInt(menuPrinsipalMensaje, menuPrinsipalMensajeError, 1, 6);
     return option;
 }
 
