@@ -34,7 +34,7 @@ int main()
         
         switch(opcion)
         {
-            case 1:
+            case 1: // Agregar pelicula
                 if (!agregarPelicula(moviesList,movie)) {
                     printf("\nNo se pudo agregar la pelicula\n");
                 }
@@ -43,10 +43,10 @@ int main()
                 }
                 break;
                 
-            case 2:
+            case 2: // Borrar pelicula
                 break;
                 
-            case 3:
+            case 3: // Modificar pelicula
                 mostrarListaDePeliculas(moviesList, movie);
                 /*if (!mostrarListaDePeliculas(moviesList, movie)) {
                     printf("\nNo se pudo agregar la pelicula\n");
@@ -56,7 +56,7 @@ int main()
                 }*/
                 break;
                 
-            case 4:
+            case 4: // Generar pagina web
                 continue;
         }
     }
