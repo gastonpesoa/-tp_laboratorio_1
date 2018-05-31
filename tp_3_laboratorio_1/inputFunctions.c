@@ -44,9 +44,9 @@ int optionMainMenu(void){
        \n4- Salir\
      \n\nIngrese una opcion: ";
     
-    char menuPrinsipalMensajeError[] = "\nSe debe elegir una opcion del 1 al 6";
+    char menuPrinsipalMensajeError[] = "\nSe debe elegir una opcion del 1 al 4";
     
-    option = getValidInt(menuPrinsipalMensaje, menuPrinsipalMensajeError, 1, 6);
+    option = getValidInt(menuPrinsipalMensaje, menuPrinsipalMensajeError, 1, 4);
     return option;
 }
 
@@ -64,9 +64,9 @@ int optionModifyMenu(void){
        \n6- Modificar link de imagen\
      \n\nIngrese una opcion: ";
     
-    char menuModificarProductMensajeError[] = "\nSe debe elegir una opcion del 1 al 4";
+    char menuModificarProductMensajeError[] = "\nSe debe elegir una opcion del 1 al 6";
     
-    option = getValidInt(menuModificarProductMensaje, menuModificarProductMensajeError, 1, 4);
+    option = getValidInt(menuModificarProductMensaje, menuModificarProductMensajeError, 1, 6);
     return option;
 }
 
