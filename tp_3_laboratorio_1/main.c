@@ -19,29 +19,19 @@
 
 int main()
 {
-    EMovie* movie;
-    EMoviesList* moviesList;
+    EMoviesList* moviesList = moviesList = list_initMoviesList(); // Creamos una estructura a EMovieList de forma dinamica
+    EMovie* movie = movie = list_newMovie(); // Creamos una estructura a EMovie de forma dinamica
     
     char seguir='s';
     int opcion=0;
     
-    moviesList = list_initMoviesList();
-
-    movie = list_newMovie();
-    
-    while(seguir=='s')
+    while(opcion!=4)
     {
-        printf("1- Agregar pelicula\n");
-        printf("2- Borrar pelicula\n");
-        printf("3- Generar pagina web\n");
-        printf("4- Salir\n");
-        
-        scanf("%d",&opcion);
+        option = optionMainMenu();
         
         switch(opcion)
         {
             case 1:
-                
                 if (!agregarPelicula(moviesList,movie)) {
                     printf("\nNo se pudo agregar la pelicula\n");
                 }
@@ -49,8 +39,10 @@ int main()
                     printf("\nPelicula cargada con exito\n");
                 }
                 break;
+                
             case 2:
                 break;
+                
             case 3:
                 mostrarListaDePeliculas(moviesList, movie);
                 /*if (!mostrarListaDePeliculas(moviesList, movie)) {
@@ -60,9 +52,9 @@ int main()
                     getchar();
                 }*/
                 break;
+                
             case 4:
-                seguir = 'n';
-                break;
+                continue;
         }
     }
     
