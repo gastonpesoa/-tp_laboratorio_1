@@ -19,13 +19,17 @@
 
 int main()
 {
-    EMoviesList* moviesList = moviesList = list_initMoviesList(); // Creamos una estructura a EMovieList de forma dinamica
-    EMovie* movie = movie = list_newMovie(); // Creamos una estructura a EMovie de forma dinamica
+    EMoviesList* moviesList = list_initMoviesList(); // Creamos una estructura a EMovieList de forma dinamica
+    EMovie* movie = list_newMovie(); // Creamos una estructura a EMovie de forma dinamica
     
-    int opcion=0;
+    int opcion=0;// Menu de opciones
     
     while(opcion!=4)
     {
+         printf("\n\n--------------------------------------------\
+                   \n|*             MENU PRINCIPAL             *|\
+                   \n--------------------------------------------");
+        
         option = optionMainMenu();
         
         switch(opcion)
