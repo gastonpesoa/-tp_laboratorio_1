@@ -30,7 +30,7 @@ int main()
                    \n|*             MENU PRINCIPAL             *|\
                    \n--------------------------------------------");
         
-        option = optionMainMenu();
+        opcion = optionMainMenu();
         
         switch(opcion)
         {
