@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1527823625 source:/Volumes/Almacen/UTN/Programacion I/TPs/tp3/tp_3_laboratorio_1/inputFunctions.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funciones.h"
+	"inputFunctions.h"
+
+1527898261 /Volumes/Almacen/UTN/Programacion I/TPs/tp3/tp_3_laboratorio_1/funciones.h
+	<stdio.h>
+
+1527823806 /Volumes/Almacen/UTN/Programacion I/TPs/tp3/tp_3_laboratorio_1/inputFunctions.h
+
