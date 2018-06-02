@@ -52,7 +52,7 @@ int optionMainMenu(void);
 int optionModifyMenu(void);
 
 /**
- * \brief Inicializa el status en un array de productos
+ * \brief Inicializa el status en un array de peliculas
  * \param moviesArray Es el array en el cual buscar
  * \param moviesArrayLenght Indica la logitud del array
  * \param value Es el valor que se asignara a status
@@ -62,10 +62,10 @@ int optionModifyMenu(void);
 void setMoviesStatus(EMovie moviesArray[],int moviesArrayLenght,int value);
 
 /**
- * \brief Busca la primer ocurrencia de un producto mediante su Id
+ * \brief Busca la primer ocurrencia de una pelicula mediante su Id
  * \param moviesArray Es el array en el cual buscar
  * \param moviesArrayLenght Indica la logitud del array
- * \param productId Es el valor que se busca
+ * \param movieId Es el valor que se busca
  * \return Si no hay ocurrencia (-1) y si la hay la posicion de la misma (i)
  *
  */
@@ -81,50 +81,56 @@ int findMovieById(EMovie moviesArray[],int moviesArrayLenght,int movieId);
 int findMovieEmptyPlace(EMovie moviesArray[],int moviesArrayLenght);
 
 /**
- * \brief Carga los valores del producto
- * \param moviesArray Es el array de productos
+ * \brief Carga los valores de la pelicula
+ * \param moviesArray Es el array de peliculas
  * \param freePlaceIndex Indica la posicion a setear
- * \param nameAux Descripcion del producto
- * \param productIdAux Id del producto
- * \param provIdAux Id del proveedor
- * \param priceAux precio del producto
- * \param stockIdAux Cantidad de productos disponibles
+ * \param titleAux Descripcion de la pelicula
+ * \param generoAux Genero de la pelicula
+ * \param duracionAux duracion de la pelicula
+ * \param descripcionAux descripcion de la pelicula
+ * \param puntajeAux puntaje de la pelicula
+ * \param linkImagenAux link a la imagen de la pelicula
+ * \param movieIdAux id de la pelicula
  * \return -
  *
  */
 void setMovie(EMovie moviesArray[],int freePlaceIndex,char titleAux[],char generoAux[],int duracionAux,char descripcionAux[],int puntajeAux,char linkImagenAux[],int movieIdAux);
 
-/** \brief Carga datos de prueba tanto en el array de productos como en el de proveedores
- * \param moviesArray El array de productos
+/** \brief Carga datos de prueba en el array de peliculas
+ * \param moviesArray El array de peliculas
  * \param moviesArrayLenght Longitud del array
- * \param provsArray provsArray El array de proveedores
- * \param provsArrayLenght Longitud del array
  * \return void
  */
 void testMovies(EMovie moviesArray[],int moviesArrayLenght);
 
 /**
- * \brief Muestra los productos activos por pantalla
- * \param productsArray Es el array de productos
- * \param productsArrayLenght Indica la logitud del array
- * \param provsArray Es el array de proveedores
- * \param provsArrayLenght Indica la logitud del array proveedores
+ * \brief Muestra las peliculas activas por pantalla
+ * \param moviesArray Es el array de peliculas
+ * \param moviesArrayLenght Indica la logitud del array
  * \return -
  */
 void showMoviesArray(EMovie moviesArray[], int moviesArrayLenght);
 
 /**
- * \brief Muestra el producto seleccionado por pantalla
- * \param productsArray Es el array a mostrar
- * \param productsArrayLenght Indica la logitud del array
- * \param provsArray Es el array de proveedores
- * \param provsArrayLenght Indica la logitud del array proveedores
+ * \brief Muestra el pelicula seleccionado por pantalla
+ * \param moviesArray Es el array a mostrar
+ * \param moviesArrayLenght Indica la logitud del array
  * \return -
  */
 void showMovie(EMovie moviesArray);
 
+/**
+ * \brief Carga datos al array de peliculas desde un archivo binario
+ * \param moviesArray Es el array a donde se cargaran los datos
+ * \return -
+ */
 int cargarMoviesArrayDesdeArchivo(EMovie* moviesArray);
 
+/**
+ * \brief Guarda la informacion del array de peliculas al archivo binario
+ * \param moviesArray Es el array desde donde se guardara la informacion
+ * \return -
+ */
 int guardarMovieArrayEnArchivo(EMovie moviesArray[],int moviesArrayLenght);
 
 /**
@@ -148,11 +154,9 @@ int agregarPelicula(EMovie moviesArray[], int moviesArrayLenght);
  */
 int borrarPelicula(EMovie moviesArray[],int moviesArrayLenght);
 
-/** \brief Pide al usuario el Id del producto a ser modificado, despliega un menu de opciones de los campos disponibles y luego de confirmar los modifica
- * \param product productsArray el array de productos donde se buscara el producto a ser modificado
- * \param length int Longitud del array
- * \param provsArray Es el array de proveedores
- * \param provsArrayLenght Indica la logitud del array
+/** \brief Pide al usuario el Id del pelicula a ser modificado, despliega un menu de opciones de los campos disponibles y luego de confirmar los modifica
+ * \param moviesArray el array de peliculas donde se buscara la pelicula a ser modificada
+ * \param moviesArrayLenght Longitud del array
  * \return -
  */
 void modificarPelicula(EMovie moviesArray[], int moviesArrayLenght);
