@@ -40,7 +40,7 @@ int optionMainMenu(void){
     \n2- Borrar pelicula\
     \n3- Modificar pelicula\
     \n4- Generar pagina web\
-    \n5- Salir\
+    \n5- Guardar y salir\
     \n\nIngrese una opcion: ";
 
     char menuPrinsipalMensajeError[] = "\nSe debe elegir una opcion del 1 al 5";
