@@ -95,12 +95,25 @@ int al_add(ArrayList* this, void* pElement){
 int al_deleteArrayList(ArrayList* this){
 
     int returnAux = -1;
+    int i;
 
     if(this != NULL){
 
+        // Se realiza liberacion de memoria de cada elemento de la lista, en esta funcion ya que en al_clrear da error
+        for(i = 0; i < this->len(this); i++){
+            free(this->get(this,i));
+            //this->pElements[i] = NULL;
+            //this->size--;
+        }
+
         this->clear(this);
+
         free(this->pElements);
+        this->pElements = NULL;
+
         free(this);
+        this = NULL;
+
         returnAux = 0;
     }
     return returnAux;
@@ -200,7 +213,7 @@ int al_remove(ArrayList* this,int index){
 
     int returnAux = -1;
 
-    if(this != NULL && index >= 0 && index <= this->size){
+    if(this != NULL && index >= 0 && index < this->len(this)){
 
         if(contract(this,index) == 0){
             returnAux = 0;
@@ -219,15 +232,16 @@ int al_remove(ArrayList* this,int index){
 int al_clear(ArrayList* this){
 
     int returnAux = -1;
-    int i;
 
     if(this != NULL){
 
-        for(i = 0; i < this->len(this); i++){
+        for(int i = 0; i < this->len(this); i++){
 
-            //free(this->get(this,i));
+            //free(this->get(this,i)); // al tratar de liberar este espacio de memoria se rompe la funcion
+            this->pElements[i] = NULL;
             this->size--;
         }
+
         this->size = 0;
         returnAux = 0;
     }
@@ -419,47 +433,40 @@ int al_containsAll(ArrayList* this,ArrayList* this2)
 int al_sort(ArrayList* this, int (*pFunc)(void* ,void*), int order){
 
     int returnAux = -1;
-    ArrayList* thisAux = al_newArrayList();
-    int i, j, returnPtrFunc;
+    void* temp = NULL;
+    int i, j;
 
-    if(this != NULL && thisAux != NULL && pFunc != NULL && (order == 0 || order == 1)){
+    if(this != NULL && pFunc != NULL && (order == 0 || order == 1)){
 
-        for(i = 0; i < this->len(this)-1; i++){
-            for(j = i+1; j < this->len(this); j++){
+        for(i = 1; i < this->len(this); i++){
 
-                returnPtrFunc = pFunc(this->pElements[i],this->pElements[j]);
+            temp = this->get(this,i);
+            j = i - 1;
+
+            if(pFunc(this->get(this,j),temp) != 0){
 
                 if(order == 1){
 
-                    if(returnPtrFunc == 1){
+                    while (j >= 0 && pFunc(this->get(this,j),temp) == 1){
 
-                        thisAux->pElements = this->pElements[j];
-                        this->pElements[j] = this->pElements[i];
-                        this->pElements[i] = thisAux->pElements;
+                        this->pElements[j+1] = this->get(this,j);
+                        j--;
                     }
-                    else {
-
-                        continue;
-                    }
+                    this->pElements[j+1] = temp;
                 }
                 else {
 
-                    if(returnPtrFunc == -1){
+                    while (j >= 0 && pFunc(this->get(this,j),temp) == -1){
 
-                        thisAux->pElements = this->pElements[j];
-                        this->pElements[j] = this->pElements[i];
-                        this->pElements[i] = thisAux->pElements;
+                        this->pElements[j+1] = this->get(this,j);
+                        j--;
                     }
-                    else {
-
-                        continue;
-                    }
-
-                }
-            }
-        }
+                    this->pElements[j+1] = temp;
+                } //  if(order == 1)
+            } // if(returnedPFunc != 0)
+        } // for(i = 1; i < this->len(this); i++)
         returnAux = 0;
-    }
+    } // if(this != NULL && thisAux != NULL && pFunc != NULL && (order == 0 || order == 1))
     return returnAux;
 }
 
@@ -482,6 +489,7 @@ int resizeUp(ArrayList* this)
         if(thisAux == NULL){
             printf("\nNo hay espacio en memoria para agrandar la lista\n");
             free(thisAux);
+            thisAux = NULL;
             return returnAux;
         }
 
@@ -503,7 +511,7 @@ int expand(ArrayList* this,int index)
     int i;
     int returnAux = -1;
 
-    if(this != NULL && index >= 0 && index <= this->size){
+    if(this != NULL && index >= 0 && index <= this->len(this)){
 
         this->size++;
 
@@ -527,13 +535,15 @@ int contract(ArrayList* this,int index)
     int returnAux = -1;
     int i;
 
-    if(this != NULL && index >= 0 && index <= this->size){
+    if(this != NULL && index >= 0 && index < this->len(this)){
 
         for(i = index; i < (this->len(this)); i++){
 
             this->pElements[i] = this->pElements[i+1];
         }
+        // Al liberar este espacio de memoria, esta funcion y al_remove funcionan, pero se rompe la funcion al_pop();
         //free(this->get(this,(this->len(this))-1));
+        this->pElements[this->len(this)-1] = NULL;
         //free(this->pElements[this->len(this)-1]);
         this->size--;
         returnAux = 0;
